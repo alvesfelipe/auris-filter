@@ -1,0 +1,1 @@
+pd -open "equalizador 1.pd" -send "local ./summer.wav" -send "pd dsp 1" -send "controlHpl 1" -send "controlHpr 1" -send "fhipl 10000" -send "fhipr 10000" -send "save 1"
