@@ -1,8 +1,9 @@
-#include "lib.h"
+#include "../include/lib.h"
+#include "../include/lib.cpp"
 
 int main(int argc, char* argv[])
 {
-
+	clog << "Contador de dados:: " << argc << endl;
 	manipulation_filters filter;
 
 	if(argc > 1)
@@ -14,15 +15,23 @@ int main(int argc, char* argv[])
 				clog << "Nao foi especificado o arquivo." << endl;
 		}
 		if(*argv[1] == '2'){
-
+			
 			if(argc == 7){
+				
 				string file, freq, gain, supl, supr;
+				
 				file = argv[2];
+				
 				freq = argv[3];
+
 				gain = argv[4];
+
 				supl = argv[5];
+
 				supr = argv[6];
+				
 				filter.filter_lowpass(file, freq, gain, supl, supr);
+				
 			}
 			else if(argc == 2)
 					clog << "Nao foi especificado o arquivo." << endl;
