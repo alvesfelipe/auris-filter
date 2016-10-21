@@ -1,5 +1,5 @@
 #include "../include/lib.h"
-#include "../include/lib.cpp"
+#include "./lib.cpp"
 
 int main(int argc, char* argv[])
 {
