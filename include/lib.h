@@ -16,7 +16,7 @@
 #endif
 using namespace std;
 
-string loc_patch = "/home/allison/Documents/lavid/auris/auris-filter/pd_files/equalizador\ 1.pd"; // localização do arquivo .pd
+string loc_patch = "../pd_files/equalizador\ 1.pd"; // localização do arquivo .pd
 //string loc_patch = getenv("patch_pd");
 
 class manipulation_filters{
