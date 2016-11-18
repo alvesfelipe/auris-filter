@@ -1,5 +1,7 @@
+#include <stdlib.h>
 #include "../include/lib.h"
 #include "./lib.cpp"
+
 
 int main(int argc, char* argv[])
 {
