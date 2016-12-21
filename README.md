@@ -1,49 +1,149 @@
-Para instalar o Puredata extended, basta, no ubuntu:
+# Auris-Filter Setup
 
-sudo add-apt-repository ppa:eighthave/pd-extended
-sudo apt-get update
-sudo apt-get install pd-extended
+These Scripts were made to install the libraries and apply the filters on audio successfully.
 
-Para compilar os testes, basta, em src:
+These Modules includes:
 
-g++ main.cpp -o main
+- Auris Filters
 
-Executando:
+### Installation:
 
-Para usar o filtro passa baixo pre-definido:
+There are two main scripts:
+  - One for the PureData
+  - Other for the Essentia library
 
-./main 1 "nome do arquivo de entrada.wav" "nome do arquivo de saida.wav"
+Which add the following Repositories:
+  - ppa:eighthave/pd-extended
+  - ppa:mc3man/trusty-media
 
-Ex:
-./main 1 "/home/user/Music/musica.wav" "/home/user/Music/MscProc.wav"
+And which Install the following packages:
+  - gcc
+  - g++
+  - make
+  - mplayer
+  - build-essential
+  - libyaml-dev
+  - libfftw3-dev
+  - libavcodec-dev **
+  - libavformat-dev **
+  - libavutil-dev **
+  - libavresample-dev **
+  - python-dev
+  - libsamplerate0-dev
+  - libtag1-dev
+  - python-numpy-dev
+  - python-numpy
+  - python-yaml
+  - yasm
+  - cmake
+  - [fftw]
+  - ffmpeg
+  - gstreamer0.10-ffmpeg
+  - lame
+  - [libav] >= 10, in this case will be installed the version 12.
+  - libsamplerate-0.1.9
+  - libsndfile-1.0.27
+  - [taglib]
+  - [yaml]
+  - swig
+  - swig2.0
+  - swig3.0
+  - build-essential
+  - libqt4-dev
+  - libyaml-dev
+  - swig
+  - python-dev
+  - pkg-config
+  - [gaia]
+  - [Essentia]
+  - [PureData extended] pd-extended
 
-Para usar o filtro passa baixo não pre-definido:
+ ** Included in libav package
 
-./main 2 "nome do arquivo de entrada.wav" "frequencia de corte" "ganho" "Supressão em L de ganho para as frequencias mais altas que a que esta passando, use 0 se não quiser alterar" "Supressão em R de ganho para as frequencias mais altas que a que esta passando, use 0 se não quiser alterar" "Caminho + nome do arquivo de saida.wav" 
+ ### Make Run:
 
-Ex:
-./main 2 "/home/user/Music/musica.wav" "500" "2"  "0.3" "0.4" "/home/user/Music/MscProc.wav"
+ Now that everything is ready to run, go to Auris filter folder.
+ ```sh
+ $ cd ~/MUSIC_DEAF/music_for_deaf/auris-filter/
+ ```
 
-Para usar o filtro passa alta pre-definido:
+ Make and run:
 
-./main 3 "/home/user/Music/nome do arquivo de entrada.wav" "/home/user/Music/nome do arquivo de saida.wav"
+ Or, step by step.
+ First, using Essentia:
+ ```
+ $ make ESSENTIA or just make
+ ```
+ Second, using PureData:
+ ```
+ $ make PD or just make
+ ```
+ To run the program, it is enough call the compilated object like the examples bellow:
 
-Ex:
-./main 3 "/home/user/Music/musica.wav" "/home/user/Music/MscProc.wav"
+###  In Essentia:
 
-Para usar o filtro passa alta não pre-definido:
+  To use the low pass filter pre-defined:
 
-./main 4 "nome do arquivo de entrada.wav" "frequencia de corte" "ganho" "Supressão em L de ganho para as frequencias mais baixas que a que esta passando, use 0 se não quiser alterar" "Supressão em R de ganho para as frequencias mais baixas que a que esta passando, use 0 se não quiser alterar" "Caminho+nome do arquivo de saida.wav" 
+    ./Auris_essentia 1 "Path of the input file + name.wav" "Path of the output file + name.wav"
 
-Ex:
-./main 4 "/home/user/Music/musica.wav" "500" "2"  "0.3" "0.4" "/home/user/Music/MscProc.wav"
+    Ex: ./Auris_essentia 1 "$HOME/Music/music.wav" "$HOME/Music/MscProc.wav"
 
-Para usar o filtro passa baixo banda:
+  To use the low pass filter not pre-defined:
+    ./Auris_essentia 2 "Path of the input file + name.wav" "Path of the output file + name.wav" "cut frequency" "gain" 
 
-./main 5 "/home/user/Music/nome do arquivo de entrada.wav" "frequencia de L" "frequencia de R" "ganho da frequencia de L" "ganho da frequencia de R" "Q da frequencia de L" "Q da frequencia de R" "Caminho+nome do arquivo de saida"
+    Ex: ./Auris_essentia 2 "$HOME/Music/music.wav" "$HOME/Music/MscProc.wav" "500" "2" 
 
-Ex:
-./main 5 "/home/user/Music/musica.wav" "500" "600" "2"  "3" "0.4" "0.4" "/home/user/Music/MscProc.wav"
+  To use the high pass filter pre-defined:
 
+    ./Auris_essentia 3 "Path of the input file + name.wav" "Path of the output file + name.wav"
 
+    Ex: ./Auris_essentia 3 "$HOME/Music/music.wav" "$HOME/Music/MscProc.wav"
 
+  To use the high pass filter not pre-defined:
+    ./Auris_essentia 4 "Path of the input file + name.wav" "Path of the output file + name.wav" "cut frequency" "gain" 
+
+    Ex: ./Auris_essentia 4 "$HOME/Music/music.wav" "$HOME/Music/MscProc.wav" "500" "2" 
+
+  To use the band pass filter:
+
+  ./Auris_essentia 5 "Path of the input file + name.wav" "Path of the output file + name.wav" "Cut frequency" "Band width" "gain"
+
+  Ex: ./Auris_essentia 5 "$HOME/Music/musica.wav" "$HOME/Music/MscProc.wav" "500" "125" "2"
+
+### In Puredata:
+  To use the low pass filter pre-defined:
+
+    ./Auris_pd 1 "Path of the input file + name.wav" "Path of the output file + name.wav"
+
+    Ex: ./Auris_pd 1 "$HOME/Music/music.wav" "$HOME/Music/MscProc.wav"
+  To use the low pass filter not pre-defined
+
+    ./Auris_pd 2 "Path of the input file + name.wav" "cut frequency" "gain" "Supress value in L of gain to the frequencies higher than the are passing, use 0 if you don't want to change" "Supress value in R of gain to the frequencies higher than the are passing, use 0 if you don't want to change" "Path of the output file + name.wav"
+
+    Ex: ./Auris_pd 2 "$HOME/Music/music.wav" "500" "2" "0.3" "0.4" "$HOME/Music/MscProc.wav"
+
+  To use the high pass filter pre-defined:
+
+  ./Auris_pd 3 "$HOME/Music/name of the input file.wav" "$HOME/Music/name of the output file.wav"
+
+  Ex: ./Auris_pd 3 "$HOME/Music/music.wav" "$HOME/Music/MscProc.wav"
+
+  To use the high pass filter not pre-defined:
+
+  ./Auris_pd 4 "Path of the input file + name.wav" "cut frequency" "gain"  "Supress value in L of gain to the frequencies lower than the are passing, use 0 if you don't want to change" "Supress value in R of gain to the frequencies lower than the are passing, use 0 if you don't want to change" "Path of the output file + name.wav"
+
+  Ex: ./Auris_pd 4 "$HOME/Music/musica.wav" "500" "2" "0.3" "0.4" "$HOME/Music/MscProc.wav"
+
+  To use the band pass filter:
+
+  ./Auris_pd 5 "Path of the input file + name.wav" "frequency of L" "frequency of R" "gain of L" "gain of R" "Q of L" "Q of R" "Path of the output file + name.wav"
+
+  Ex: ./Auris_pd 5 "$HOME/Music/musica.wav" "500" "600" "2" "3" "0.4" "0.4" "$HOME/Music/MscProc.wav"
+
+  [libav]: <https://libav.org/>
+  [fftw]: <http://www.fftw.org/>
+  [taglib]: <http://developer.kde.org/~wheeler/taglib.html>
+  [yaml]: <http://pyyaml.org/wiki/LibYAML>
+  [gaia]: <https://github.com/MTG/gaia>
+  [Essentia]: <http://essentia.upf.edu/>
+  [PureData extended]: <https://puredata.info/downloads/pd-extended>
