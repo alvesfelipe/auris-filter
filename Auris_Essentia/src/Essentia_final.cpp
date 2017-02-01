@@ -53,8 +53,9 @@ void lowPass::doFilter()
 	AlgorithmFactory& factory = standard::AlgorithmFactory::instance();
 
 	int sampleRate = 44100;
-	Algorithm* audio 	 = factory.create("MonoLoader",
+	Algorithm* audio 	 = factory.create("EqloudLoader",
                         "filename", fileNameIn,
+			"replayGain", gain, 
                         "sampleRate", sampleRate);
 
 	Algorithm* lowPassFilter = factory.create("LowPass",
@@ -117,8 +118,9 @@ void highPass::doFilter()
 	AlgorithmFactory& factory = standard::AlgorithmFactory::instance();
 
 	int sampleRate = 44100;
-	Algorithm* audio 	 = factory.create("MonoLoader",
+	Algorithm* audio 	 = factory.create("EqloudLoader",
                         "filename", fileNameIn,
+			"replayGain", gain,
                         "sampleRate", sampleRate);
 
 	Algorithm* highPassFilter = factory.create("HighPass",
@@ -172,8 +174,9 @@ void bandPass::doFilter()
 	AlgorithmFactory& factory = standard::AlgorithmFactory::instance();
 
 	int sampleRate = 44100;
-	Algorithm* audio 	 = factory.create("MonoLoader",
+	Algorithm* audio 	 = factory.create("EqloudLoader",
                         "filename", fileNameIn,
+			"replayGain", gain,
                         "sampleRate", sampleRate);
 
 	Algorithm* highPassFilter = factory.create("BandPass",
