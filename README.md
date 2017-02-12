@@ -84,73 +84,84 @@ To run the program, it is enough call the compilated object like the examples be
 
 To use the low pass filter pre-defined:
 ```sh
-./Auris_essentia 1 "Path of the input file + name.wav" "Path of the output file + name.wav"
+./Auris_essentia 1 "path_to_input/name_of_music.wav" "path_to_output/name_of_music.wav"
 
 Ex: ./Auris_essentia 1 "$HOME/Music/music.wav" "$HOME/Music/MscProc.wav"
 ```
 
 To use the low pass filter not pre-defined:
 ```sh
-./Auris_essentia 2 "Path of the input file + name.wav" "Path of the output file + name.wav" "cut frequency" "gain" 
+./Auris_essentia 2 "path_to_input/name_of_music.wav" "path_to_output/name_of_music.wav" "cut frequency" "gain" 
 
 Ex: ./Auris_essentia 2 "$HOME/Music/music.wav" "$HOME/Music/MscProc.wav" "500" "2" 
 ```
 
 To use the high pass filter pre-defined:
 ```sh
-./Auris_essentia 3 "Path of the input file + name.wav" "Path of the output file + name.wav"
+./Auris_essentia 3 "path_to_input/name_of_music.wav" "path_to_output/name_of_music.wav"
 Ex: ./Auris_essentia 3 "$HOME/Music/music.wav" "$HOME/Music/MscProc.wav"    
 ```
 
 To use the high pass filter not pre-defined:
 ```sh
-./Auris_essentia 4 "Path of the input file + name.wav" "Path of the output file + name.wav" "cut frequency" "gain" 
+./Auris_essentia 4 "path_to_input/name_of_music.wav" "path_to_output/name_of_music.wav" "cut frequency" "gain" 
 
 Ex: ./Auris_essentia 4 "$HOME/Music/music.wav" "$HOME/Music/MscProc.wav" "500" "2" 
 ```
 
 To use the band pass filter:
 ```sh
-./Auris_essentia 5 "Path of the input file + name.wav" "Path of the output file + name.wav" "Cut frequency" "Band width" "gain"
+./Auris_essentia 5 "path_to_input/name_of_music.wav" "path_to_output/name_of_music.wav" "Cut frequency" "Band width" "gain"
 
 Ex: ./Auris_essentia 5 "$HOME/Music/musica.wav" "$HOME/Music/MscProc.wav" "500" "125" "2"
 ```
+
+### Attention: Using Essentia you can input files of the following formats:
+    - WAV
+    - MP3
+    - OGG
+    - FLAC
+    - etc. In Essentia library all the formats supported by ffmpeg can be used.
+
 ### In Puredata:
 
 To use the low pass filter pre-defined:
 ```sh
-./Auris_pd 1 "Path of the input file + name.wav" "Path of the output file + name.wav"
+./Auris_pd 1 "path_to_input/name_of_music.wav" "path_to_output/name_of_music.wav"
 
 Ex: ./Auris_pd 1 "$HOME/Music/music.wav" "$HOME/Music/MscProc.wav"
 ```
 
 To use the low pass filter not pre-defined:
 ```sh
-./Auris_pd 2 "Path of the input file + name.wav" "cut frequency" "gain" "Supress value in L of gain to the frequencies higher than the are passing, use 0 if you don't want to change" "Supress value in R of gain to the frequencies higher than the are passing, use 0 if you don't want to change" "Path of the output file + name.wav"
+./Auris_pd 2 "path_to_input/name_of_music.wav" "cut frequency" "gain" "Supress value in L of gain to the frequencies higher than the are passing, use 0 if you don't want to change" "Supress value in R of gain to the frequencies higher than the are passing, use 0 if you don't want to change" "path_to_output/name_of_music.wav"
 
 Ex: ./Auris_pd 2 "$HOME/Music/music.wav" "500" "2" "0.3" "0.4" "$HOME/Music/MscProc.wav"
 ```    
 
 To use the high pass filter pre-defined:
 ```sh
-./Auris_pd 3 "$HOME/Music/name of the input file.wav" "$HOME/Music/name of the output file.wav"
+./Auris_pd 3 "path_to_input/name_of_music.wav" "path_to_output/name_of_music.wav"
 
 Ex: ./Auris_pd 3 "$HOME/Music/music.wav" "$HOME/Music/MscProc.wav"
 ```
 
 To use the high pass filter not pre-defined:
 ```sh
-./Auris_pd 4 "Path of the input file + name.wav" "cut frequency" "gain"  "Supress value in L of gain to the frequencies lower than the are passing, use 0 if you don't want to change" "Supress value in R of gain to the frequencies lower than the are passing, use 0 if you don't want to change" "Path of the output file + name.wav"
+./Auris_pd 4 "path_to_input/name_of_music.wav" "cut frequency" "gain"  "Supress value in L of gain to the frequencies lower than the are passing, use 0 if you don't want to change" "Supress value in R of gain to the frequencies lower than the are passing, use 0 if you don't want to change" "path_to_input/name_of_music.wav"
 
 Ex: ./Auris_pd 4 "$HOME/Music/musica.wav" "500" "2" "0.3" "0.4" "$HOME/Music/MscProc.wav"
 ```
 
 To use the band pass filter:
 ```sh
-./Auris_pd 5 "Path of the input file + name.wav" "frequency of L" "frequency of R" "gain of L" "gain of R" "Q of L" "Q of R" "Path of the output file + name.wav"
+./Auris_pd 5 "path_to_input/name_of_music.wav" "frequency of L" "frequency of R" "gain of L" "gain of R" "Q of L" "Q of R" "path_to_output/name_of_music.wav"
 
 Ex: ./Auris_pd 5 "$HOME/Music/musica.wav" "500" "600" "2" "3" "0.4" "0.4" "$HOME/Music/MscProc.wav"
 ```
+
+### Attention: Using Pure Data only wav format file is supported.
+
 [libav]: <https://libav.org/>
 [fftw]: <http://www.fftw.org/>
 [taglib]: <http://developer.kde.org/~wheeler/taglib.html>
